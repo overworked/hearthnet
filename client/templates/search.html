@@ -1,6 +1,23 @@
 <template name="search">
+	<h2 style="text-align: center;">search</h2>
+
 	<form action="action" id="searchBox">
-		<input type="text" id="searchInput">
+		<div class="row">
+			<div class="small-3 column">
+				<input type="text" data-filter-id="username" class="field" placeholder="field1">
+			</div>
+			<div class="small-3 column">
+				<input type="text" data-filter-id="field2" class="field" placeholder="field2">
+			</div>
+			<div class="small-3 column">
+				<input type="text" data-filter-id="field3" class="field" placeholder="field3">
+			</div>
+			<div class="small-3 column">
+				<input type="text" data-filter-id="field4" class="field" placeholder="field4">
+			</div>
+		</div>
+
+		div.row>
 	</form>
 	{{#each searchUsers}}
 		{{>userCard}}
