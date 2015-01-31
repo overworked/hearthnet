@@ -3,9 +3,10 @@ Router.configure({
 });
 
 Router.route('/', function() {
-    this.render('dashboard');
+    this.render('dashboard', {to: 'content'});
 });
 
 Router.route('/login', function() {
+	this.layout('loginLayout');
     this.render('login');
 });

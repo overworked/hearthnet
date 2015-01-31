@@ -1,14 +1,13 @@
 <template name='applicationLayout'>
     <div id='nav-bar'>
-        <p>
-            dfasdfds
-        </p>
+        {{>yield "nav-bar"}}
     </div>
 
     <div id='content'>
-        {{>yield }}
+        {{>yield "content"}}
     </div>
 </template>
 
-
-
+<template name='loginLayout'>
+	{{> yield}}
+</template>
