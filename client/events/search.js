@@ -1,14 +1,16 @@
 Template.search.events({
-	'input #searchBox > input': function(e, templateInstance) {
+	'input #searchBox input': function(e, templateInstance) {
 		e.preventDefault();
-		var searchString = templateInstance.find("#searchInput").value;
 
-		if (searchString) {
-			Session.set('searchResults', Meteor.users.find({
-				username: new RegExp("^" + searchString + '.*$')
-			}).fetch());
-		} else {
-			Session.set('searchResults', []);
-		}
+		var obj = {$and: []};
+		$('.field').each(function(index, element) { 
+			var x = {}; 
+			x[$(element).data('filter-id')] = new RegExp("^" + element.value + '.*$'); 
+
+			obj.$and.push(x)
+		});
+
+		Session.set('searchResults', Meteor.users.find(obj).fetch());
+		
 	}
 })
