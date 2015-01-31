@@ -4,22 +4,24 @@
 	<form action="action" id="searchBox">
 		<div class="row">
 			<div class="small-3 column">
-				<input type="text" data-filter-id="username" class="field" placeholder="field1">
+				<input type="text" data-filter-id="username" class="field" placeholder="username">
 			</div>
 			<div class="small-3 column">
-				<input type="text" data-filter-id="field2" class="field" placeholder="field2">
+				<input type="text" data-filter-id="username" class="field" placeholder="username">
 			</div>
 			<div class="small-3 column">
-				<input type="text" data-filter-id="field3" class="field" placeholder="field3">
+				<input type="text" data-filter-id="username" class="field" placeholder="username">
 			</div>
 			<div class="small-3 column">
-				<input type="text" data-filter-id="field4" class="field" placeholder="field4">
+				<input type="text" data-filter-id="username" class="field" placeholder="username">
 			</div>
 		</div>
-
-		div.row>
 	</form>
-	{{#each searchUsers}}
-		{{>userCard}}
-	{{/each}}
+	<div class="row">
+		{{#each searchUsers}}
+			<div class="column small-12">
+				{{>userCard}}
+			</div>
+		{{/each}}
+	</div>
 </template>
