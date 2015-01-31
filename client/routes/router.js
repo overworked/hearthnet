@@ -10,6 +10,23 @@ Router.route('/search', function() {
 	this.render('search', {to: 'content'});
 });
 
+Router.route('/browse', function() {
+    this.render('list', {to: 'content'});
+});
+
+Router.route('/profile/:_id', {
+    layoutTemplate: 'applicationLayout',
+    yieldRegions: {
+        'profile': {to: 'content'}
+    },
+    data: function() {
+        return Meteor.users.findOne({_id:this.params._id});
+    },
+    action: function() {
+        this.render();
+    }
+});
+
 Router.route('/', function() {
 	if (!Meteor.userId()) {
 		this.layout('landingLayout');
