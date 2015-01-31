@@ -5,6 +5,7 @@ Meteor.methods({
         }, {
             $set : {
                 profile: {
+                    description: updatedUser.description,
                     email: updatedUser.email,
                     ign : updatedUser.ign,
                     preferredDecksToFaceTags : updatedUser.preferredDecksToFaceTags,
