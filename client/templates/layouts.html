@@ -8,10 +8,8 @@
     </div>
 </template>
 
-<template name='loginLayout'>
-	{{> yield}}
-</template>
+<template name='landingLayout'>
+	{{> yield "registration"}}
 
-<template name='registerLayout'>
-	{{> yield}}
+	{{> yield "login"}}
 </template>
