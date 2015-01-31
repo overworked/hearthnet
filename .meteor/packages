@@ -5,5 +5,5 @@
 # but you can also edit it by hand.
 
 meteor-platform
-iron:router@0.9.4
+iron:router@1.0.5
 accounts-password
