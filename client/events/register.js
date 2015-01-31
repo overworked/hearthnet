@@ -9,7 +9,7 @@ Template.register.events({
       console.log(err);
     } else {
           console.log('user has been registered and logged in'); //debug
-          Router.go('/home');
+          Router.go('/edit-profile');
         }
       });
   return false;
