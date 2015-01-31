@@ -10,3 +10,8 @@ Router.route('/login', function() {
 	this.layout('loginLayout');
     this.render('login');
 });
+
+Router.route('/register', function() {
+	this.layout('registerLayout');
+	this.render('register');
+})
