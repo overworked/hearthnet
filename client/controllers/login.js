@@ -6,11 +6,11 @@ Template.login.events({
     var password = templateInstance.find('#login-password').value;
 
     Meteor.loginWithPassword(username, password, function(err){
+      // console.log(Meteor.users.find({}).fetch());
         if (err) {
           console.log(err);
         } else {
-          //redirect
-          console.log('user has been logged in');
+          console.log('user has been logged in'); //debug
           Router.go('/home');
         }
     });

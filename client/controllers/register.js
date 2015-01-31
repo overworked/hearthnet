@@ -8,8 +8,7 @@ Template.register.events({
     if (err) {
       console.log(err);
     } else {
-          //redirect
-          console.log('user has been registered and logged in');
+          console.log('user has been registered and logged in'); //debug
           Router.go('/home');
         }
       });
