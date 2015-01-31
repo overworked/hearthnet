@@ -10,6 +10,10 @@ Router.route('/search', function() {
 	this.render('search', {to: 'content'});
 });
 
+Router.route('/browse', function() {
+    this.render('list', {to: 'content'});
+});
+
 Router.route('/', function() {
 	if (!Meteor.userId()) {
 		this.layout('landingLayout');
