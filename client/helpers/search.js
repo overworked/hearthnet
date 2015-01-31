@@ -1,5 +1,5 @@
 Template.search.helpers({
-	featuredUsers: function() {
+	searchUsers: function() {
 		return Session.get('searchResults')
 	}
 });

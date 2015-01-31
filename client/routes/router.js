@@ -8,8 +8,7 @@ Router.route('/home', function() {
 
 Router.route('/search', function() {
 	this.render('search', {to: 'content'});
-})
-
+});
 
 Router.route('/', function() {
 	if (!Meteor.userId()) {
