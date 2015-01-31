@@ -1,4 +1,13 @@
 <template name='applicationLayout'>
+	<!-- <div class="row"> -->
+		<div id="nav-bar" class="columns large-2">
+			<p>Hey</p>
+		</div>
+		<div id="content" class="columns large-10">
+			{{>yield "content"}}
+		</div>
+	<!-- </div> -->
+
     <div id='nav-bar'>
         {{>yield "nav-bar"}}
     </div>
@@ -7,10 +16,27 @@
         {{>yield "content"}}
     </div>
 
+
 </template>
 
 <template name='landingLayout'>
-	{{> yield "registration"}}
 
-	{{> yield "login"}}
+	<div class="landing-page-wrapper">
+		<div class="landing-page" ></div>
+	</div>
+	<div class="row" style="padding-top:3em">
+		<div class="panel text-center user-panel columns large-6 medium-8 small-12 large-centered medium-centered">
+			<ul class="tabs row" style="padding-bottom:1em;text-align:center">
+			  <li class="tab-title active columns large-6 medium-6 small-6" style="padding-right:0"><a>Sign up</a></li>
+			  <li class="tab-title columns large-6 medium-6 small-6" style="padding-left:0"><a>Log in</a></li>
+			</ul>
+			{{#if isLogin}}
+		    	{{> yield "login"}} 
+		    {{else}}
+				{{> yield "registration"}}
+			{{/if}}
+		</div>
+	</div>
+
+	
 </template>
