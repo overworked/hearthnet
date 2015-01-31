@@ -44,7 +44,7 @@ Router.route('/', function() {
 		this.layout('landingLayout');
 		this.render('register', {to: 'registration'});
 		this.render('login', {to: 'login'});
-	} else {
+	} else if (Meteor.userId() && !!!Session.get('new_user')) {
 		this.redirect('/home');
 	}
 });
