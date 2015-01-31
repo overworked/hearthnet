@@ -1,14 +1,17 @@
 Template.editAccount.events({
     'submit #account-edit-form' : function(e, templateInstance){
         e.preventDefault();
+
         var username = templateInstance.find('#username').value;
+        var ign = templateInstance.find('#ign').value;
         var email = templateInstance.find('#email').value;
-        var preferredDecksToFace = templateInstance.find('#preferredDecksToFaceTags').value.split(' ');
-        var dislikedDecksToFace = templateInstance.find('#dislikedDecksTags').value.split(' ');
-        var decksUsed = templateInstance.find('#decksUsed').value.split(' ');
+        var preferredDecksToFace = templateInstance.find('#preferredDecksToFaceTags').value.split(', ');
+        var dislikedDecksToFace = templateInstance.find('#dislikedDecksTags').value.split(', ');
+        var decksUsed = templateInstance.find('#decksUsed').value.split(', ');
 
         var updatedFields = {
             username : username,
+            ign : ign,
             email : email,
             preferredDecksToFaceTags : preferredDecksToFace,
             dislikedDecksToFaceTags : dislikedDecksToFace,
@@ -22,6 +25,7 @@ Template.editAccount.events({
                 console.log('user has been updated'); //debug
             }
         });
+
         return false;
     }
 });

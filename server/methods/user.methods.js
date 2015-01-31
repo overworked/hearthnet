@@ -1,13 +1,16 @@
 Meteor.methods({
-    updateUser: function(updatedUser) { console.log('entered function')
+    updateUser: function(updatedUser) {
         Meteor.users.update({
             _id : Meteor.userId()
         }, {
             $set : {
-                email : updatedUser.email,
-                preferredDecksToFaceTags : updatedUser.preferredDecksToFaceTags,
-                dislikedDecksToFaceTags : updatedUser.dislikedDecksToFaceTags,
-                decksUsed : updatedUser.decksUsed
+                profile: {
+                    email: updatedUser.email,
+                    ign : updatedUser.ign,
+                    preferredDecksToFaceTags : updatedUser.preferredDecksToFaceTags,
+                    dislikedDecksToFaceTags : updatedUser.dislikedDecksToFaceTags,
+                    decksUsed : updatedUser.decksUsed
+                }
             }
         }, function(error, affected) {
             console.log(error, affected);

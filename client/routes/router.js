@@ -32,7 +32,7 @@ Router.route('/edit-profile', {
         'editAccount': {to: 'content'}
     },
     data: function() {
-        return Meteor.users.findOne({_id:this.params._id});
+        return Meteor.user();
     },
     action: function() {
         this.render();
