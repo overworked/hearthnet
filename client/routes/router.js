@@ -3,12 +3,11 @@ Router.configure({
 });
 
 Router.route('/home', function() {
-	this.render('dashboard', {to: 'homeContent'});
+	this.render('dashboard', {to: 'content'});
 });
 
-Router.route('home/test', function() {
-	this.render('dashboard', {to: 'homeContent'});
-	this.render('test', {to: 'nav-bar'})
+Router.route('/search', function() {
+	this.render('search', {to: 'content'});
 })
 
 
