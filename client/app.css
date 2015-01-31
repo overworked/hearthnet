@@ -1,0 +1,38 @@
+.landing-page {
+	-webkit-filter: blur(12px);
+	background-image: url(/hearthstone.jpg);
+	position: fixed;
+	z-index: -1;
+	opacity: 0.5;
+	min-width: 100%;
+	min-height: 100%;
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+	background-position: center center;
+	-webkit-transform: translate3d(0, 0, 0);
+}
+
+.landing-page-wrapper {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	min-width: 100%;
+	min-height: 100%;
+	z-index: -2;
+	background-color: #000;
+}
+
+.user-panel {
+	background-color: rgba(255, 255, 255, 0.4);
+	border:none;
+}
+
+label {
+	cursor: default !important;
+	font-weight: bold;
+}
+
+.active a {
+	font-weight: bold;
+}
