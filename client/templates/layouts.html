@@ -1,21 +1,12 @@
 <template name='applicationLayout'>
 	<!-- <div class="row"> -->
 		<div id="nav-bar" class="columns large-2">
-			<p>Hey</p>
+			{{>yield "nav-bar"}}
 		</div>
 		<div id="content" class="columns large-10">
 			{{>yield "content"}}
 		</div>
 	<!-- </div> -->
-
-    <div id='nav-bar'>
-        {{>yield "nav-bar"}}
-    </div>
-
-    <div id='content'>
-        {{>yield "content"}}
-    </div>
-
 
 </template>
 
