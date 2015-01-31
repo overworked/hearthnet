@@ -27,6 +27,18 @@ Router.route('/profile/:_id', {
     }
 });
 
+Router.route('/edit-profile', {
+    yieldRegions: {
+        'editAccount': {to: 'content'}
+    },
+    data: function() {
+        return Meteor.users.findOne({_id:this.params._id});
+    },
+    action: function() {
+        this.render();
+    }
+});
+
 Router.route('/', function() {
 	if (!Meteor.userId()) {
 		this.layout('landingLayout');
