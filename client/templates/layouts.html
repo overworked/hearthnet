@@ -1,0 +1,15 @@
+<template name='applicationLayout'>
+    <div id='nav-bar'>
+        {{>yield "nav-bar"}}
+    </div>
+
+    <div id='content'>
+        {{>yield "content"}}
+    </div>
+</template>
+
+<template name='landingLayout'>
+	{{> yield "registration"}}
+
+	{{> yield "login"}}
+</template>
