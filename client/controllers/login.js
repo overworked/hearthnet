@@ -11,6 +11,7 @@ Template.login.events({
         } else {
           //redirect
           console.log('user has been logged in');
+          Router.go('/home');
         }
     });
       return false; 

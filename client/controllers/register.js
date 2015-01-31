@@ -10,6 +10,7 @@ Template.register.events({
     } else {
           //redirect
           console.log('user has been registered and logged in');
+          Router.go('/home');
         }
       });
   return false;
