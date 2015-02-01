@@ -20,6 +20,7 @@ Router.route('/profile/:_id', {
         'profile': {to: 'content'}
     },
     data: function() {
+        console.log(Meteor.users.findOne({_id:this.params._id}));
         return Meteor.users.findOne({_id:this.params._id});
     },
     action: function() {
@@ -46,7 +47,7 @@ Router.route('/', function() {
 		this.render('login', {to: 'login'});
 	} else if (Meteor.userId() && !!!Session.get('new_user')) {
         Session.set('new_user', false);
-		console.log('yolo');
+		console.log('yolo'); //debug
         this.redirect('/home');
 	}
 });

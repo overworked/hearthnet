@@ -1,4 +1,66 @@
 <template name="profile">
-    Profile Page
-    {{username}}
+    <div class="row">
+      <div class="medium-8 medium-centered columns">
+        <div class="row">
+            <div class="small-12">
+                <h1>{{username}}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 small-centered columns">
+                <a class="th" href="#">
+                    <img src='http://lorempixel.com/300/300/animals/' />
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-3 columns">
+                Ign:
+            </div>
+            <div class="small-9 columns">
+                {{profile.ign}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-6 columns">
+                <button>Message me</button>
+            </div>
+            <div class="small-6 columns">
+                <button>Challenge me</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-3 columns">
+                Description:
+            </div>
+            <div class="small-9 columns">
+                {{profile.description}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-3 columns">
+                Decks I Use:
+            </div>
+            <div class="small-9 columns">
+                {{profile.decksUsed}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-3 columns">
+                Decks I am Looking to Face:
+            </div>
+            <div class="small-9 columns">
+                {{profile.preferredDecksToFaceTags}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-3 columns">
+                Decks I Do Not Like Facing:
+            </div>
+            <div class="small-9 columns">
+                {{profile.dislikedDecksTags}}
+            </div>
+        </div>
+    </div>
+</div>
 </template>
