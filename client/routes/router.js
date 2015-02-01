@@ -52,8 +52,26 @@ Router.route('/inbox/:username', {
         //     return Meteor.subscribe('conversations'), Meteor.userId();
         // },
     data: function() {
-        var returnData = {conversationsList: Conversations.find({},{sort:{date_updated:-1}}).fetch()};
-        return returnData;
+
+        console.log(Meteor.user())
+        var query = {
+            $and: [
+                {
+                    participants: Meteor.user().username
+                },{
+                    participants: this.params.username
+                }
+            ]
+        };
+        console.log(query);
+
+        var test =  {
+            messages: Conversations.findOne(query,{sort:{date_updated:-1}}).messages,
+            conversations: Conversations.find({},{sort:{date_updated:-1}}).fetch()
+        };
+
+        console.log(test)
+        return test;
     },
     action: function() {
         console.log(this.params.userId);
@@ -73,9 +91,9 @@ Router.route('/inbox', {
     // },
     data: function() {
         console.log('hit 1');
-        var returnData = {conversationsList: Conversations.find({},{sort:{date_updated:-1}}).fetch()};
-        returnData.currentConversation = returnData.conversationsList[0];
-        return returnData;
+        return {
+            conversations: Conversations.find({},{sort:{date_updated:-1}}).fetch()
+        };
     },
     action: function() {
         this.render();

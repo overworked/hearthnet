@@ -1,9 +1,7 @@
 <template name="inboxContent">
 	<div>
-		testmsg
-		{{#each currentConversation.messages}}
-		testmsg1
-		{{>messageTemplate}}
+		{{#each messages}}
+			{{>messageTemplate}}
 		{{/each}}
 	</div>
 	<div>
