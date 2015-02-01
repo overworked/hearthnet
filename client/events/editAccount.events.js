@@ -20,8 +20,6 @@ Template.editAccount.events({
             decksUsed : decksUsed
         };
 
-        console.log(updatedFields);
-
         Meteor.call('updateUser', updatedFields, function(err) {
             if (err) {
                 console.log(err);
