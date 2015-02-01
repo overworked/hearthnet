@@ -119,3 +119,7 @@ input[type='username'] {
 	position:absolute;
 	top:0px;
 }
+
+.dashboard-card-overlay.visible {
+	background-color: rgba(0,0,0,0.75);
+}
