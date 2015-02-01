@@ -1,12 +1,61 @@
 <template name="editAccount">
     <form id="account-edit-form" action="action" >
-        <input type="username" id="username" placeholder="username" disabled="disabled" value="{{username}}" />
-        <input type="text" id="ign" placeholder="IGN" value="{{profile.ign}}" />
-        <textarea id="description" placeholder="Talk about yourself." value="{{profile.description}}"></textarea>
-        <input type="email" id="email" placeholder="email" value="{{profile.email}}"/>
-        <input type="text" id="preferredDecksToFace" placeholder="decks I want to face" value="{{profile.preferredDecksToFace}}" />
-        <input type="text" id="dislikedDecksToFace" placeholder="decks you dislike" value="{{profile.dislikedDecksToFace}}" />
-        <input type="text" id="decksUsed" placeholder="decks you play" value="{{profile.decksUsed}}" />
-        <input type="submit" class="button" id="update-button" value="Update Profile" />
+        <div class="row">
+            <div class="column small-12">
+                <label for="username">
+                    <input type="username" id="username" placeholder="username" disabled="disabled" value="{{username}}" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-12">
+                <label for="ign">
+                    <input type="text" id="ign" placeholder="IGN" value="{{profile.ign}}" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-12">
+                <label for="description">
+                    <textarea id="description" placeholder="Talk about yourself." value="{{profile.description}}"></textarea>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-12">
+                <label for="email">
+                    <input type="email" id="email" placeholder="email" value="{{profile.email}}"/>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-12">
+                <label for="preferredDecksToFace">
+                    <input type="text" id="preferredDecksToFace" placeholder="decks I want to face" value="{{profile.preferredDecksToFace}}" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-12">
+                <label for="dislikedDecksToFace">
+                    <input type="text" id="dislikedDecksToFace" placeholder="decks you dislike" value="{{profile.dislikedDecksToFace}}" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-12">
+                <label for="decksUsed">
+                    <input type="text" id="decksUsed" placeholder="decks you play" value="{{profile.decksUsed}}" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-12">
+                <label for="update-button">
+                    <input type="submit" class="button" id="update-button" value="Update Profile" />
+                </label>
+            </div>
+        </div>
+        
     </form>
 </template>
