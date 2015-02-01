@@ -18,10 +18,14 @@
 		</div>
 	</form>
 	<div class="row">
+		<div class="column small-12">
+		<ul class="small-block-grid-4">
 		{{#each searchUsers}}
-			<div class="column small-3">
-				{{>userCard}}
-			</div>
+			<li>
+				{{>userSearchCard}}
+			</li>
 		{{/each}}
+		</ul>
+		</div>
 	</div>
 </template>
