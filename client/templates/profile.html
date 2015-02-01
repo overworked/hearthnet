@@ -1,72 +1,74 @@
 <template name="profile">
     <div class="row">
-      <div class="medium-8 medium-centered columns">
+        <div class="small-12 columns">
+            <h1 class="header text-center">{{username}} <small> [{{#if profile.ign}} {{profile.ign}} {{else}} 'N/A' {{/if}}]</small></h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 columns">
+            <a class="th super-center" href="#">
+                <img src='http://lorempixel.com/300/300/animals/' />
+            </a>
+        </div>
+    </div>
+
+    <div id="profile-content">
         <div class="row">
-            <div class="small-12">
-                <h1>{{username}}</h1>
+            <div class="small-12 columns">
+                <button type="button" class="button radius large super-quarter message">Message</button>
+                <button type="button" class="button radius large super-quarter alert challenge">Challenge</button>
             </div>
         </div>
+
         <div class="row">
-            <div class="small-12 small-centered columns">
-                <a class="th" href="#">
-                    <img src='http://lorempixel.com/300/300/animals/' />
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-3 columns">
-                Ign:
-            </div>
-            <div class="small-9 columns">
-                {{profile.ign}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-6 columns">
-                <button>Message me</button>
-            </div>
-            <div class="small-6 columns">
-                <button>Challenge me</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-3 columns">
-                Description:
-            </div>
-            <div class="small-9 columns">
-                {{profile.description}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-3 columns">
-                Decks I Use:
-            </div>
-            <div class="small-9 columns">
-                {{#each profile.decksUsed}}
-                    <a href="#" class="secondary radius label"> {{this}} </a>
-                {{/each}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-3 columns">
-                Decks I am Looking to Face:
-            </div>
-            <div class="small-9 columns">
-                {{#each profile.preferredDecksToFace}}
-                    <a href="#" class="success radius label"> {{this}} </a>
-                {{/each}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-3 columns">
-                Decks I Do Not Like Facing:
-            </div>
-            <div class="small-9 columns">
-                {{#each profile.dislikedDecksToFace}}
-                    <a href="#" class="alert radius label"> {{this}} </a>
-                {{/each}}
+            <div class="small-8 medium-centered columns">
+                <div class="row">
+                    <div class="small-12 columns clearfix">
+                        <h5 class="left">my decks:</h5>
+                        <ul class="inline-list clearfix">
+                            {{#each profile.decksUsed}}
+                            <li class="no-spacing right">
+                                <a href="#" class="secondary radius label"> {{this}} </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns clearfix">
+                        <h5 class="left">decks I want to face:</h5>
+                        <ul class="inline-list clearfix">
+                            {{#each profile.preferredDecksToFace}}
+                            <li class="no-spacing right">
+                                <a href="#" class="success radius label"> {{this}} </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns clearfix">
+                        <h5 class="left">decks I hate:</h5>
+                        <ul class="inline-list clearfix">
+                            {{#each profile.dislikedDecksToFace}}
+                            <li class="no-spacing right">
+                                <a href="#" class="warning radius label"> {{this}} </a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="small-12 columns">
+                        <h2 class="header">about me: </h2>
+                        {{profile.description}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+
 </template>

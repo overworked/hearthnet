@@ -85,3 +85,26 @@ input[type='username'] {
 .header.left-indent {
 	left:4vw;
 }
+
+.super-center {
+	position:relative;
+	transform:translateX(-50%);
+	left:50%;
+}
+
+.inline-list  .no-spacing {
+	padding: 0px;
+	margin:2px 2px 2px 2px;
+}
+
+#profile-content {
+	position:relative;
+	top:5vh;
+}
+
+.super-quarter {
+	position:relative;
+	transform:translateX(-100%);
+	left:50%;
+}
+
