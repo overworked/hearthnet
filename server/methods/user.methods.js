@@ -8,8 +8,8 @@ Meteor.methods({
                     description: updatedUser.description,
                     email: updatedUser.email,
                     ign : updatedUser.ign,
-                    preferredDecksToFaceTags : updatedUser.preferredDecksToFaceTags,
-                    dislikedDecksToFaceTags : updatedUser.dislikedDecksToFaceTags,
+                    preferredDecksToFace : updatedUser.preferredDecksToFace,
+                    dislikedDecksToFace : updatedUser.dislikedDecksToFace,
                     decksUsed : updatedUser.decksUsed
                 }
             }

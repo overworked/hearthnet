@@ -14,7 +14,7 @@ Router.route('/browse', function() {
     this.render('list', {to: 'content'});
 });
 
-Router.route('/profile/:_id', {
+Router.route('/profiles/:_id', {
     layoutTemplate: 'applicationLayout',
     yieldRegions: {
         'profile': {to: 'content'}

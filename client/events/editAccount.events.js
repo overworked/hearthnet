@@ -6,8 +6,8 @@ Template.editAccount.events({
         var ign = templateInstance.find('#ign').value;
         var description = templateInstance.find('#description').value;
         var email = templateInstance.find('#email').value;
-        var preferredDecksToFace = templateInstance.find('#preferredDecksToFaceTags').value.split(',').join(' ').split(' ').filter(function(e){return e;});
-        var dislikedDecksToFace = templateInstance.find('#dislikedDecksTags').value.split(',').join(' ').split(' ').filter(function(e){return e;});
+        var preferredDecksToFace = templateInstance.find('#preferredDecksToFace').value.split(',').join(' ').split(' ').filter(function(e){return e;});
+        var dislikedDecksToFace = templateInstance.find('#dislikedDecksToFace').value.split(',').join(' ').split(' ').filter(function(e){return e;});
         var decksUsed = templateInstance.find('#decksUsed').value.split(',').join(' ').split(' ').filter(function(e){return e;});
 
         var updatedFields = {
@@ -15,8 +15,8 @@ Template.editAccount.events({
             ign : ign,
             description : description,
             email : email,
-            preferredDecksToFaceTags : preferredDecksToFace,
-            dislikedDecksToFaceTags : dislikedDecksToFace,
+            preferredDecksToFace : preferredDecksToFace,
+            dislikedDecksToFace : dislikedDecksToFace,
             decksUsed : decksUsed
         };
 
