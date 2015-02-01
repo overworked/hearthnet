@@ -1,24 +1,9 @@
 <template name="list">
 	<ul class="small-block-grid-4">
-	    <!-- {{#each allUsers}} -->
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-
-			<li><div style="height:20em;border:1px solid #008cba;">{{username}}</div></li>
-
-	    <!-- {{/each}} -->
+	    {{#each allUsers}}
+			<li>
+                {{>userCard}}
+            </li>
+	    {{/each}}
     </ul>
-
-    browse
-    {{#each allUsers}}
-        {{>userCard}}
-    {{/each}}
 </template>
