@@ -1,7 +1,7 @@
 <template name="dashboard">
 	<div class="row">
 		<div class="column small-12">
-			<h1 class="header">top suggestion: </h1>
+			<h1 class="header">top suggestions: </h1>
 		</div>
 	</div>
 
@@ -11,5 +11,19 @@
 	    	{{> userDashboardCard}}
 	    </div>
 	    {{/each}}
+    </div>
+
+    <div class="row">
+    	<div class="column small-12">
+    		<h1 class="header">other players:</h1>
+    	</div>
+    </div>
+
+    <div class="row">
+		{{#each normalUsers}}
+		<div class="columns small-3">
+			{{> userSearchCard}}
+		</div>
+		{{/each}}
     </div>
 </template>
