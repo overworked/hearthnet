@@ -35,6 +35,9 @@ Router.route('/edit-profile', {
     data: function() {
         return Meteor.user();
     },
+    onBeforeAction : function() {
+        this.next();
+    },
     action: function() {
         this.render();
     }
@@ -45,9 +48,8 @@ Router.route('/', function() {
 		this.layout('landingLayout');
 		this.render('register', {to: 'registration'});
 		this.render('login', {to: 'login'});
-	} else if (Meteor.userId() && !!!Session.get('new_user')) {
+	} else if (Meteor.userId() && !Session.get('new_user')) { //when user is logged in and not a new user
         Session.set('new_user', false);
-		console.log('yolo'); //debug
         this.redirect('/home');
 	}
 });
