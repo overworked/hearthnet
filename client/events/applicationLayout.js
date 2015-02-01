@@ -18,5 +18,15 @@ Template.applicationLayout.helpers({
 Template.applicationLayout.events({
 	'click .nav-item': function(e) {
 		Session.set("pageTitle", e.target.innerText);
-	}
+	},
+  'click #logoutButton': function(e) {
+    Meteor.logout(function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('logged out successfully');
+        Router.go('/');
+      }
+    });
+  }
 });
