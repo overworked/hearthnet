@@ -4,7 +4,19 @@ Template.register.events({
         var username = templateInstance.find('#account-username').value;
         var password = templateInstance.find('#account-password').value;
 
-        Accounts.createUser({username: username, password : password}, function(err){
+        console.log('Got inside the event handler');
+
+        Accounts.createUser({
+            username: username, 
+            password : password,
+            profile: {
+                wins: [],
+                losses: [],
+                decksUsed: [],
+                preferredDecksToFace: [],
+                dislikedDecksToFace: []
+            }
+        }, function(err){
             if (err) {
                 console.log(err);
             } else {
@@ -14,6 +26,7 @@ Template.register.events({
                 Router.go('/edit-profile');
             }
         });
+
         return false;
     }
 });

@@ -5,9 +5,9 @@ Template.editAccount.events({
         var username = templateInstance.find('#username').value;
         var ign = templateInstance.find('#ign').value;
         var email = templateInstance.find('#email').value;
-        var preferredDecksToFace = templateInstance.find('#preferredDecksToFaceTags').value.split(', ');
-        var dislikedDecksToFace = templateInstance.find('#dislikedDecksTags').value.split(', ');
-        var decksUsed = templateInstance.find('#decksUsed').value.split(', ');
+        var preferredDecksToFace = templateInstance.find('#preferredDecksToFaceTags').value.split(',').filter(function(e){return e;});
+        var dislikedDecksToFace = templateInstance.find('#dislikedDecksTags').value.split(',').filter(function(e){return e;});
+        var decksUsed = templateInstance.find('#decksUsed').value.split(',').filter(function(e){return e;});
 
         var updatedFields = {
             username : username,
