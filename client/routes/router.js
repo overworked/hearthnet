@@ -43,6 +43,25 @@ Router.route('/edit-profile', {
     }
 });
 
+Router.route('/inbox', {
+    yieldRegions: {
+        'inbox': {to: 'content'}
+    },
+    waitOn: function() {
+        return Meteor.subscribe('conversations', Meteor.userId());
+    },
+    data: function() {
+        var returnData = {conversationsList: Conversations.find({}).fetch()};
+        console.log(returnData);
+        return returnData;
+        // return {conversationsList:Conversations.find({}).fetch()};
+    },
+    action: function() {
+        this.render();
+    }
+
+});
+
 Router.route('/', function() {
 	if (!Meteor.userId()) {
 		this.layout('landingLayout');

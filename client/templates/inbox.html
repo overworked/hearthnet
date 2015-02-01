@@ -1,0 +1,11 @@
+<template name="inbox">
+	<div>
+		{{#each conversationsList}}
+		conversationSelector
+		{{participants}}
+		<!-- {{messages}} -->
+		{{/each}}
+	</div>
+
+	{{>yield "inboxContent"}}
+</template>
