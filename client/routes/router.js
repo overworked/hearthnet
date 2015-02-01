@@ -50,3 +50,11 @@ Router.route('/', function() {
         this.redirect('/home');
 	}
 });
+
+Router.onAfterAction(function () {
+  if (Meteor.isClient) {
+    Deps.afterFlush(function () {
+      Foundation.libs.offcanvas.events()
+    });
+  }
+}, {where:'client'});

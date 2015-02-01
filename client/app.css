@@ -56,3 +56,19 @@ input[type='username'] {
 	box-sizing: border-box;
 	transition: box-shadow 0.45s,border-color 0.45s ease-in-out;
 }
+
+.navigation {
+	height:100%;
+	background-color: #333333;
+}
+
+#nav-bar {
+	position: fixed;
+	z-index: 1000;
+	top:0;
+	left:0;
+	bottom:0;
+}
+#content {
+	float:right;
+}
