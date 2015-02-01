@@ -1,6 +1,9 @@
 <template name="dashboard">
-    dashboard
-    {{#each featuredUsers}}
-    	{{username}}
-    {{/each}}
+    <div class="row">
+    	{{#each featuredUsers}}
+    	<div class="colimns large-3">
+	    	{{username}}
+	    </div>
+	    {{/each}}
+    </div>
 </template>
