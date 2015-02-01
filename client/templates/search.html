@@ -1,8 +1,27 @@
 <template name="search">
+	<h2 style="text-align: center;">search</h2>
+
 	<form action="action" id="searchBox">
-		<input type="text" id="searchInput">
+		<div class="row">
+			<div class="small-3 column">
+				<input type="text" data-filter-id="username" class="field" placeholder="username">
+			</div>
+			<div class="small-3 column">
+				<input type="text" data-filter-id="username" class="field" placeholder="username">
+			</div>
+			<div class="small-3 column">
+				<input type="text" data-filter-id="username" class="field" placeholder="username">
+			</div>
+			<div class="small-3 column">
+				<input type="text" data-filter-id="username" class="field" placeholder="username">
+			</div>
+		</div>
 	</form>
-	{{#each searchUsers}}
-		{{>userCard}}
-	{{/each}}
+	<div class="row">
+		{{#each searchUsers}}
+			<div class="column small-3">
+				{{>userCard}}
+			</div>
+		{{/each}}
+	</div>
 </template>

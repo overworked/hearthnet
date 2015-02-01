@@ -5,8 +5,7 @@ Template.login.events({
     var username = templateInstance.find('#login-username').value;
     var password = templateInstance.find('#login-password').value;
 
-    Meteor.loginWithPassword(username, password, function(err){
-      // console.log(Meteor.users.find({}).fetch());
+    Meteor.loginWithPassword(username, password, function(err) {
         if (err) {
           console.log(err);
         } else {

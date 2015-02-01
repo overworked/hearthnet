@@ -27,13 +27,27 @@ Router.route('/profile/:_id', {
     }
 });
 
+Router.route('/edit-profile', {
+    yieldRegions: {
+        'editAccount': {to: 'content'}
+    },
+    data: function() {
+        return Meteor.user();
+    },
+    action: function() {
+        this.render();
+    }
+});
+
 Router.route('/', function() {
 	if (!Meteor.userId()) {
 		this.layout('landingLayout');
 		this.render('register', {to: 'registration'});
 		this.render('login', {to: 'login'});
-	} else {
-		this.redirect('/home');
+	} else if (Meteor.userId() && !!!Session.get('new_user')) {
+        Session.set('new_user', false);
+		console.log('yolo');
+        this.redirect('/home');
 	}
 });
 
