@@ -51,15 +51,32 @@ Router.route('/inbox', {
         return Meteor.subscribe('conversations', Meteor.userId());
     },
     data: function() {
-        var returnData = {conversationsList: Conversations.find({}).fetch()};
+        var returnData = {conversationsList: Conversations.find({},{sort:{date_updated:-1}}).fetch()};
+        returnData.currentConversation = returnData.conversationsList[0];
         console.log(returnData);
         return returnData;
-        // return {conversationsList:Conversations.find({}).fetch()};
     },
     action: function() {
         this.render();
     }
 
+});
+
+Router.route('/inbox/:userId', {
+    yieldRegions: {
+        'inbox': {to: 'content'}
+    },
+    waitOn: function() {
+        return Meteor.subscribe('conversations'), Meteor.userId();
+    },
+    data: function() {
+        var returnData = {conversationsList: Conversations.find({},{sort:{date_updated:-1}}).fetch()};
+        
+        return returnData;
+    },
+    action: function() {
+        this.render();
+    }
 });
 
 Router.route('/', function() {
