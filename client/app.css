@@ -76,3 +76,12 @@ input[type='username'] {
 .text-center {
 	text-align: center;
 }
+
+.header {
+	position:relative; 
+	margin: 3vh auto 3vh auto;
+}
+
+.header.left-indent {
+	left:4vw;
+}
