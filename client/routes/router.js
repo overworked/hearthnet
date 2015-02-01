@@ -14,14 +14,14 @@ Router.route('/browse', function() {
     this.render('list', {to: 'content'});
 });
 
-Router.route('/profiles/:_id', {
+Router.route('/profiles/:username', {
     layoutTemplate: 'applicationLayout',
     yieldRegions: {
         'profile': {to: 'content'}
     },
     data: function() {
-        console.log(Meteor.users.findOne({_id:this.params._id}));
-        return Meteor.users.findOne({_id:this.params._id});
+        console.log(Meteor.users.findOne({username:this.params.username}));
+        return Meteor.users.findOne({username:this.params.username});
     },
     action: function() {
         this.render();
