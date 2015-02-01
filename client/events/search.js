@@ -9,7 +9,7 @@ Template.search.events({
 			if (index < $('#searchBox input').length / 2) return;
 
 			var x = {}; 
-			x[$(element).data('filter-id')] = new RegExp("^" + element.value + '.*$'); 
+			x[$(element).data('filter-id')] = new RegExp("^" + element.value + '.*$', 'i'); 
 
 			obj.$and.push(x);
 		});
