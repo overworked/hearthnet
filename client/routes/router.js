@@ -43,40 +43,44 @@ Router.route('/edit-profile', {
     }
 });
 
+Router.route('/inbox/:username', {
+    yieldRegions: {
+        'inbox': {to: 'content'}
+    },
+        // waitOn: function() {
+        //     console.log('here1');
+        //     return Meteor.subscribe('conversations'), Meteor.userId();
+        // },
+    data: function() {
+        var returnData = {conversationsList: Conversations.find({},{sort:{date_updated:-1}}).fetch()};
+        return returnData;
+    },
+    action: function() {
+        console.log(this.params.userId);
+        Session.set('messageReceiverId', this.params.username);
+        console.log(Session.get('messageReceiverId'));
+        this.render();
+    }
+});
+
+
 Router.route('/inbox', {
     yieldRegions: {
         'inbox': {to: 'content'}
     },
-    waitOn: function() {
-        return Meteor.subscribe('conversations', Meteor.userId());
-    },
+    // waitOn: function() {
+    //     return Meteor.subscribe('conversations', Meteor.userId());
+    // },
     data: function() {
+        console.log('hit 1');
         var returnData = {conversationsList: Conversations.find({},{sort:{date_updated:-1}}).fetch()};
         returnData.currentConversation = returnData.conversationsList[0];
-        console.log(returnData);
         return returnData;
     },
     action: function() {
         this.render();
     }
 
-});
-
-Router.route('/inbox/:userId', {
-    yieldRegions: {
-        'inbox': {to: 'content'}
-    },
-    waitOn: function() {
-        return Meteor.subscribe('conversations'), Meteor.userId();
-    },
-    data: function() {
-        var returnData = {conversationsList: Conversations.find({},{sort:{date_updated:-1}}).fetch()};
-        
-        return returnData;
-    },
-    action: function() {
-        this.render();
-    }
 });
 
 Router.route('/', function() {
