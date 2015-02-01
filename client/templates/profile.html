@@ -42,7 +42,9 @@
                 Decks I Use:
             </div>
             <div class="small-9 columns">
-                {{profile.decksUsed}}
+                {{#each profile.decksUsed}}
+                    <a href="#" class="secondary radius label"> {{this}} </a>
+                {{/each}}
             </div>
         </div>
         <div class="row">
@@ -50,7 +52,9 @@
                 Decks I am Looking to Face:
             </div>
             <div class="small-9 columns">
-                {{profile.preferredDecksToFace}}
+                {{#each profile.preferredDecksToFace}}
+                    <a href="#" class="success radius label"> {{this}} </a>
+                {{/each}}
             </div>
         </div>
         <div class="row">
@@ -58,7 +62,9 @@
                 Decks I Do Not Like Facing:
             </div>
             <div class="small-9 columns">
-                {{profile.dislikedDecksToFace}}
+                {{#each profile.dislikedDecksToFace}}
+                    <a href="#" class="alert radius label"> {{this}} </a>
+                {{/each}}
             </div>
         </div>
     </div>
