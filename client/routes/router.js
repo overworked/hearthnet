@@ -1,5 +1,6 @@
 Router.configure({
-	layoutTemplate: 'applicationLayout'
+	layoutTemplate: 'applicationLayout',
+    loadingTemplate: 'loading'
 });
 
 Router.route('/home', function() {
@@ -20,7 +21,6 @@ Router.route('/profiles/:username', {
         'profile': {to: 'content'}
     },
     data: function() {
-        console.log(Meteor.users.findOne({username:this.params.username}));
         return Meteor.users.findOne({username:this.params.username});
     },
     action: function() {
@@ -47,40 +47,39 @@ Router.route('/inbox/:username', {
     yieldRegions: {
         'inbox': {to: 'content'}
     },
-        // waitOn: function() {
-        //     console.log('here1');
-        //     return Meteor.subscribe('conversations'), Meteor.userId();
-        // },
+        waitOn: function() {
+            return [Meteor.subscribe('conversationsForUser', Meteor.userId()), Meteor.subscribe('directory')];
+        },
     data: function() {
-
-        console.log(Meteor.user())
         var query = {
             $and: [
                 {
-                    participants: Meteor.user().username
+                    participants: !!Meteor.user() && Meteor.user().username
                 },{
                     participants: this.params.username
                 }
             ]
         };
-        console.log(query);
 
-        var test =  {
-            messages: Conversations.findOne(query,{sort:{date_updated:-1}}).messages,
-            conversations: Conversations.find({},{sort:{date_updated:-1}}).fetch()
+        var conversation = Conversations.findOne(query,{sort:{date_updated:-1}});
+
+        var data =  {
+            messages: !!conversation && conversation.messages,
+            conversations: Conversations.find({},{sort:{date_updated:-1}})
         };
 
-        console.log(test)
-        return test;
+        return data;
+    },
+    onBeforeAction: function () {
+        Session.set('messageReceiverId', this.params.username);
+        this.next();
     },
     action: function() {
-        console.log(this.params.userId);
-        Session.set('messageReceiverId', this.params.username);
-        console.log(Session.get('messageReceiverId'));
-        this.render();
+        if (this.ready()) {
+            this.render();
+        }
     }
 });
-
 
 Router.route('/inbox', {
     yieldRegions: {
@@ -90,7 +89,6 @@ Router.route('/inbox', {
     //     return Meteor.subscribe('conversations', Meteor.userId());
     // },
     data: function() {
-        console.log('hit 1');
         return {
             conversations: Conversations.find({},{sort:{date_updated:-1}}).fetch()
         };

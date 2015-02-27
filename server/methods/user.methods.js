@@ -14,7 +14,7 @@ Meteor.methods({
                 }
             }
         }, function(error, affected) {
-            console.log(error, affected);
+            console.log(error, affected); //TODO: handle this error properly
         });
     },
     sendMessage: function(message) {
@@ -31,13 +31,9 @@ Meteor.methods({
         };
 
         if(Conversations.findOne(query)) {
-
             Conversations.update(query, {$push: {messages: message}});
-            console.log('updated message');
-
         } else {
             Conversations.insert({messages: [message], participants: [message['receiverName'], message['senderName']]});
-            console.log('created convo and added first message');
         }
     }
 });

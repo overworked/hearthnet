@@ -2,9 +2,6 @@ Template.inboxContent.events({
     'submit #send-inbox-message-form' : function(e, templateInstance){
         e.preventDefault();
 
-        // console.log(templateInstance);
-        // console.log(templateInstance.find('#inboxNewMessage'));
-        // cnosole.log(templateInstance.find('#inboxNewMessage').fetch());
         var message = templateInstance.find('#inboxNewMessage').value;
         var messageFields = {
             message: message,
@@ -14,10 +11,9 @@ Template.inboxContent.events({
 
         Meteor.call('sendMessage', messageFields, function(err) {
             if (err) {
-                console.log(err);
+                console.log(err); //TODO: handle this error properly
             } else {
-                console.log(messageFields);
-                console.log('user has been updated'); //debug
+                templateInstance.find('#inboxNewMessage').value = '';
             }
         });
 
