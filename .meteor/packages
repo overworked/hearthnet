@@ -8,7 +8,6 @@ meteor-platform
 iron:router@1.0.5
 accounts-password
 accounts-base
-autopublish
 foundation
 aldeed:simple-schema
 aldeed:collection2

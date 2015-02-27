@@ -3,25 +3,68 @@ Router.configure({
     loadingTemplate: 'loading'
 });
 
-Router.route('/home', function() {
-	this.render('dashboard', {to: 'content'});
+Router.route('/home', {
+    yieldRegions: {
+        'dashboard': {to: 'content'}
+    },
+    waitOn: function() {
+        return Meteor.subscribe('directory');
+    },
+    data: function() {
+        var data = {
+            featuredUsers: function(){
+                return Meteor.users.find({}, {limit:3}); //TODO: implement better logic to find featured users & restrict count
+            },
+            normalUsers: function(){
+                return Meteor.users.find({}, {limit: 8});
+            }
+        }
+        return data;
+    },
+    action: function() {
+        if (this.ready()) {
+            this.render();
+        }
+    }
 });
 
 Router.route('/search', function() {
-	this.render('search', {to: 'content'});
+	this.render('search', {to: 'content'}); //TODO: fix it for autopublish removed
 });
 
-Router.route('/browse', function() {
-    this.render('list', {to: 'content'});
+Router.route('/browse', {
+    yieldRegions: {
+        'list': {to: 'content'}
+    },
+    waitOn: function() {
+        return Meteor.subscribe('directory');
+    },
+    data: function() {
+        var data = {
+            allUsers: function() {
+                return Meteor.users.find({});
+            }
+        }
+        return data;
+    },
+    action: function() {
+        if (this.ready()) {
+            this.render();
+        }
+    }
 });
 
 Router.route('/profiles/:username', {
     layoutTemplate: 'applicationLayout',
+    waitOn: function() {
+        return Meteor.subscribe('user', this.params.username);
+    },
     yieldRegions: {
         'profile': {to: 'content'}
     },
     data: function() {
         return Meteor.users.findOne({username:this.params.username});
+        //return Meteor.users.findOne({});
     },
     action: function() {
         this.render();
@@ -47,9 +90,10 @@ Router.route('/inbox/:username', {
     yieldRegions: {
         'inbox': {to: 'content'}
     },
-        waitOn: function() {
-            return [Meteor.subscribe('conversationsForUser', !!Meteor.user() && Meteor.user().username), Meteor.subscribe('directory')];
-        },
+    waitOn: function() {
+        var username = Meteor.user() && Meteor.user().username;
+        return [Meteor.subscribe('conversationsForUser', username), Meteor.subscribe('directory')];
+    },
     data: function() {
         var query = {
             $and: [
@@ -61,10 +105,10 @@ Router.route('/inbox/:username', {
             ]
         };
 
-        var conversation = Conversations.findOne(query,{sort:{date_updated:-1}});
+        var currentConversation = Conversations.findOne(query,{sort:{date_updated:-1}});
 
         var data =  {
-            messages: !!conversation && conversation.messages,
+            messages: !!currentConversation && currentConversation.messages,
             conversations: Conversations.find({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}})
         };
 
@@ -81,22 +125,37 @@ Router.route('/inbox/:username', {
     }
 });
 
+//redirect on this route?
 Router.route('/inbox', {
     yieldRegions: {
         'inbox': {to: 'content'}
     },
-    // waitOn: function() {
-    //     return Meteor.subscribe('conversations', Meteor.userId());
-    // },
+    waitOn: function() {
+        return [Meteor.subscribe('conversationsForUser', !!Meteor.user() && Meteor.user().username), Meteor.subscribe('directory')];
+    },
     data: function() {
-        return {
-            conversations: Conversations.find({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}})
+        var conversations = Conversations.find({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}}).fetch();
+        //console.log(conversations);
+        // console.log(conversations.fetch());
+
+        var data =  {
+            // messages: Meteor.user() ? [Conversations.findOne({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}})] : [],
+            messages: !!conversations[0] && conversations[0].messages,
+            conversations: conversations
         };
+
+        return data;
+    },
+    onBeforeAction: function () {
+        //console.log(this);
+        //console.log(data);
+        this.next();
     },
     action: function() {
-        this.render();
+        if (this.ready()) {
+            this.render();
+        }
     }
-
 });
 
 Router.route('/', function() {

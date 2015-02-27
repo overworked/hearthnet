@@ -8,6 +8,10 @@ Meteor.publish('directory', function() {
 	return Meteor.users.find();
 });
 
+Meteor.publish('user', function(username) {
+    return Meteor.users.find({username: username});
+})
+
 // Meteor.publish('conversations', function() {
 // 	return Conversations.find();
 // });
