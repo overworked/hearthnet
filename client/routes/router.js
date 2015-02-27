@@ -125,7 +125,6 @@ Router.route('/inbox/:username', {
     }
 });
 
-//redirect on this route?
 Router.route('/inbox', {
     yieldRegions: {
         'inbox': {to: 'content'}
@@ -135,11 +134,8 @@ Router.route('/inbox', {
     },
     data: function() {
         var conversations = Conversations.find({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}}).fetch();
-        //console.log(conversations);
-        // console.log(conversations.fetch());
 
         var data =  {
-            // messages: Meteor.user() ? [Conversations.findOne({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}})] : [],
             messages: !!conversations[0] && conversations[0].messages,
             conversations: conversations
         };
@@ -147,8 +143,11 @@ Router.route('/inbox', {
         return data;
     },
     onBeforeAction: function () {
-        //console.log(this);
-        //console.log(data);
+        //if () //length > 0, else no redirect
+        var conversations = Conversations.find({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}}).fetch();
+        var mostRecentConversationSlug = getOtherParticipantName(conversations[0].participants);
+
+        this.redirect('/inbox/'+mostRecentConversationSlug);
         this.next();
     },
     action: function() {
