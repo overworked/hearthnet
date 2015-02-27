@@ -143,12 +143,15 @@ Router.route('/inbox', {
         return data;
     },
     onBeforeAction: function () {
-        //if () //length > 0, else no redirect
         var conversations = Conversations.find({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}}).fetch();
-        var mostRecentConversationSlug = getOtherParticipantName(conversations[0].participants);
 
-        this.redirect('/inbox/'+mostRecentConversationSlug);
-        this.next();
+        if (conversations && conversations.length) {
+            var mostRecentConversationSlug = getOtherParticipantName(conversations[0].participants);
+
+            this.redirect('/inbox/' + mostRecentConversationSlug);
+        } else {
+            this.next();
+        }
     },
     action: function() {
         if (this.ready()) {

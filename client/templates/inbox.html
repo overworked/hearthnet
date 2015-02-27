@@ -1,13 +1,21 @@
 <template name="inbox">
-	<ul id="conversationsList">
-		{{#each conversations}}
-			<li class="conversationSelector">
-			{{getOtherParticipantName participants}}
-			</li>
-		{{/each}}
-	</ul>
+    {{#if isConversationsNonEmpty conversations}}
+        <ul class="conversationsList">
+            {{#each conversations}}
+                <li class="conversationSelector">
+                {{getOtherParticipantName participants}}
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <div class="conversationsList">
+            No active conversations
+        </div>
+    {{/if}}
 
-	<div id="conversationContent"><!--if convo's exist, else display no messages exist yet, message someone!-->
+    {{ #if messages }}
 		{{>conversationView}}
-	</div>
+    {{else}}
+        {{>emptyConversationView}}
+    {{/if}}
 </template>
