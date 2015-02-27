@@ -1,9 +1,13 @@
 <template name="inbox">
-	<div id="conversationsList">
+	<ul id="conversationsList">
 		{{#each conversations}}
-			{{participants}}
+			<li class="conversationSelector">
+			{{getOtherParticipantName participants}}
+			</li>
 		{{/each}}
-	</div>
+	</ul>
 
-	{{>inboxContent}}
+	<div id="conversationContent"><!--if convo's exist, else display no messages exist yet, message someone!-->
+		{{>inboxContent}}
+	</div>
 </template>

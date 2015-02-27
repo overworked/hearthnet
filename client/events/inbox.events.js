@@ -1,3 +1,10 @@
+Template.inbox.events({
+    'click .conversationSelector' : function(e, templateInstance){
+        var inboxTargetSlug = getOtherParticipantName(this.participants);
+        Router.go('/inbox/'+inboxTargetSlug);
+    }
+});
+
 Template.inboxContent.events({
     'submit #send-inbox-message-form' : function(e, templateInstance){
         e.preventDefault();

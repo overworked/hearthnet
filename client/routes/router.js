@@ -48,7 +48,7 @@ Router.route('/inbox/:username', {
         'inbox': {to: 'content'}
     },
         waitOn: function() {
-            return [Meteor.subscribe('conversationsForUser', Meteor.userId()), Meteor.subscribe('directory')];
+            return [Meteor.subscribe('conversationsForUser', !!Meteor.user() && Meteor.user().username), Meteor.subscribe('directory')];
         },
     data: function() {
         var query = {
@@ -65,7 +65,7 @@ Router.route('/inbox/:username', {
 
         var data =  {
             messages: !!conversation && conversation.messages,
-            conversations: Conversations.find({},{sort:{date_updated:-1}})
+            conversations: Conversations.find({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}})
         };
 
         return data;
@@ -90,7 +90,7 @@ Router.route('/inbox', {
     // },
     data: function() {
         return {
-            conversations: Conversations.find({},{sort:{date_updated:-1}}).fetch()
+            conversations: Conversations.find({participants : !!Meteor.user() && Meteor.user().username},{sort:{date_updated:-1}})
         };
     },
     action: function() {
