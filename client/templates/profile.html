@@ -1,7 +1,9 @@
 <template name="profile">
     <div class="row">
         <div class="small-12 columns">
-            <h1 class="header text-center">{{username}} <small> [{{#if profile.ign}} {{profile.ign}} {{else}} 'N/A' {{/if}}]</small></h1>
+            <h1 class="header text-center">
+                {{username}} <small>[{{#if profile.ign}} {{profile.ign}} {{else}} 'N/A' {{/if}}]</small>
+            </h1>
         </div>
     </div>
 
@@ -16,8 +18,8 @@
     <div id="profile-content">
         <div class="row">
             <div class="small-12 columns">
-                <button type="button" class="button radius large super-quarter message">Message</button>
-                <button type="button" class="button radius large super-quarter alert challenge">Challenge</button>
+                <button type="button" id="messageButton" class="button radius large super-quarter message">Message</button>
+                <button type="button" id="challengeButton" class="button radius large super-quarter alert challenge">Challenge</button>
             </div>
         </div>
 
