@@ -5,7 +5,7 @@ Template.inbox.events({
     }
 });
 
-Template.inboxContent.events({
+Template.conversationView.events({
     'submit #send-inbox-message-form' : function(e, templateInstance){
         e.preventDefault();
 
