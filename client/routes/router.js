@@ -13,10 +13,10 @@ Router.route('/home', {
     data: function() {
         var data = {
             featuredUsers: function(){
-                return Meteor.users.find({}, {limit:3}); //TODO: implement better logic to find featured users & restrict count
+                return Meteor.users.find({username: { $not: Meteor.user().username}}, {limit:3}); //TODO: implement better logic to find featured users & restrict count
             },
             normalUsers: function(){
-                return Meteor.users.find({}, {limit: 8});
+                return Meteor.users.find({username: { $not: Meteor.user().username}}, {limit: 8});
             }
         }
         return data;
@@ -42,9 +42,10 @@ Router.route('/browse', {
     data: function() {
         var data = {
             allUsers: function() {
-                return Meteor.users.find({});
+                return Meteor.users.find();
             }
-        }
+        };
+
         return data;
     },
     action: function() {
