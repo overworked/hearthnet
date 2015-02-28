@@ -97,11 +97,8 @@ Router.route('/inbox/:username', {
     data: function() {
         var query = {
             $and: [
-                {
-                    participants: !!Meteor.user() && Meteor.user().username
-                },{
-                    participants: this.params.username
-                }
+                {participants: !!Meteor.user() && Meteor.user().username},
+                {participants: this.params.username}
             ]
         };
 

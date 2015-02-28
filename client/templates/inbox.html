@@ -1,5 +1,5 @@
 <template name="inbox">
-    {{#if isConversationsNonEmpty conversations}}
+    {{#if isNotEmpty conversations}}
         <ul class="conversationsList">
             {{#each conversations}}
                 <li class="conversationSelector">
@@ -13,7 +13,7 @@
         </div>
     {{/if}}
 
-    {{ #if messages }}
+    {{ #if exists messages }}
 		{{>conversationView}}
     {{else}}
         {{>emptyConversationView}}
