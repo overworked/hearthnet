@@ -96,9 +96,22 @@ Router.route('/inbox/:username', {
         return [Meteor.subscribe('conversationsForUser', username), Meteor.subscribe('directory')];
     },
     data: function() {
-        var query = {
+        var currentUser = !!Meteor.user() && Meteor.user().username;
+        var query;
+
+        if (this.params.username === currentUser) {
+            //user messages themselves
+            query = {
+                $and: [
+                    {participants: currentUser},
+                    {'participants.1': {$exists: false}}
+                ]
+            }
+        }
+
+        query = {
             $and: [
-                {participants: !!Meteor.user() && Meteor.user().username},
+                {participants: currentUser},
                 {participants: this.params.username}
             ]
         };
