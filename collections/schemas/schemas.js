@@ -45,6 +45,9 @@ MessageSchema = new SimpleSchema({
     },
     author_username: {
         type: String
+    },
+    date: {
+        type: Date
     }
 });
 
