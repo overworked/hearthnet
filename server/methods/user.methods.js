@@ -43,8 +43,20 @@ Meteor.methods({
         var conversation = Conversations.findOne(query);
 
         if (!conversation) {
-            Conversations.insert({messages: [], participants: [receiverUsername, Meteor.user().username]});
-        }
+            Conversations.insert({
+                messages: [],
+                participants: [{username: receiverUsername, role: 'participant'}, {
+                    username: Meteor.user().username,
+                    role: 'creator'
+                }]
+            }, function (err, result) {
+                if (err) {
+                    console.log(err); //TODO: Handle error properly
+                    return;
+                }
 
+                console.log(result);
+            });
+        }
     }
 });

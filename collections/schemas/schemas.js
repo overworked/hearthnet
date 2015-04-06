@@ -43,14 +43,18 @@ MessageSchema = new SimpleSchema({
     message: {
         type: String
     },
-    author: {
-        type: UserSchema
+    author_username: {
+        type: String
     }
 });
 
 ParticipantSchema = new SimpleSchema({
-    account: {
-        type: UserSchema
+    username: {
+        type: String
+    },
+    role: {
+        type: String,
+        allowedValues: ['creator', 'participant']
     }
 });
 
