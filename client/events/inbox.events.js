@@ -1,22 +1,21 @@
 Template.inbox.events({
-    'click .conversationSelector' : function(e, templateInstance){
-        var inboxTargetSlug = getOtherParticipantName(this.participants);
-        Router.go('/inbox/'+inboxTargetSlug);
+    'click .conversationSelector': function (e, templateInstance) {
+        var inboxTargetSlug = getOtherParticipants(this.participants)[0].username;
+        Router.go('/inbox/' + inboxTargetSlug);
     }
 });
 
 Template.conversationView.events({
-    'submit #send-inbox-message-form' : function(e, templateInstance){
+    'submit #send-inbox-message-form': function (e, templateInstance) {
         e.preventDefault();
 
         var message = templateInstance.find('#inboxNewMessage').value;
         var messageFields = {
             message: message,
-            senderName: Meteor.user().username,
-            receiverName: Session.get('messageReceiverId')
-        }
+            author_username: Meteor.user().username
+        };
 
-        Meteor.call('sendMessage', messageFields, function(err) {
+        Meteor.call('sendMessage', messageFields, templateInstance.data.participants, function (err) {
             if (err) {
                 console.log(err); //TODO: handle this error properly
             } else {
