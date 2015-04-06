@@ -17,8 +17,25 @@ ProfileSchema = new SimpleSchema({
 });
 
 UserSchema = new SimpleSchema({
+    username: {
+        type: String,
+        regEx: /^[a-z0-9A-Z_]{3,15}$/
+    },
+    createdAt: {
+        type: Date
+    },
     profile: {
-        type: ProfileSchema
+        type: ProfileSchema,
+        optional: true
+    },
+    services: {
+        type: Object,
+        optional: true,
+        blackbox: true
+    },
+    roles: {
+        type: [String],
+        optional: true
     }
 });
 
