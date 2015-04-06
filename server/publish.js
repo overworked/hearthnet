@@ -10,7 +10,7 @@ Meteor.publish('directory', function() {
 
 Meteor.publish('user', function(username) {
     return Meteor.users.find({username: username});
-})
+});
 
 // Meteor.publish('conversations', function() {
 // 	return Conversations.find();
