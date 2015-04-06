@@ -18,7 +18,7 @@ Router.route('/home', {
             normalUsers: function () {
                 return Meteor.users.find({username: {$not: Meteor.user().username}}, {limit: 8});
             }
-        }
+        };
         return data;
     },
     action: function () {
