@@ -11,15 +11,17 @@ Router.route('/home', {
         return Meteor.subscribe('directory');
     },
     data: function () {
-        var data = {
-            featuredUsers: function () {
-                return Meteor.users.find({username: {$not: Meteor.user().username}}, {limit: 3}); //TODO: implement better logic to find featured users & restrict count
-            },
-            normalUsers: function () {
-                return Meteor.users.find({username: {$not: Meteor.user().username}}, {limit: 8});
-            }
-        };
-        return data;
+        if (this.ready()) {
+            var data = {
+                featuredUsers: function () {
+                    return Meteor.users.find({username: {$not: Meteor.user().username}}, {limit: 3}); //TODO: implement better logic to find featured users & restrict count
+                },
+                normalUsers: function () {
+                    return Meteor.users.find({username: {$not: Meteor.user().username}}, {limit: 8});
+                }
+            };
+            return data;
+        }
     },
     action: function () {
         if (this.ready()) {
@@ -77,7 +79,9 @@ Router.route('/edit-profile', {
         'editAccount': {to: 'content'}
     },
     data: function () {
-        return Meteor.user();
+        if (this.ready()) {
+            return Meteor.user();
+        }
     },
     onBeforeAction: function () {
         this.next();
@@ -96,35 +100,37 @@ Router.route('/inbox/:username', {
         return [Meteor.subscribe('conversationsForUser', username), Meteor.subscribe('directory')];
     },
     data: function () {
-        var currentUser = !!Meteor.user() && Meteor.user().username;
-        var query;
+        if (this.ready()) {
+            var currentUser = !!Meteor.user() && Meteor.user().username;
+            var query;
 
-        if (this.params.username === currentUser) {
-            //user messages themselves
+            if (this.params.username === currentUser) {
+                //user messages themselves
+                query = {
+                    $and: [
+                        {'participants.username': currentUser},
+                        {'participants.1': {$exists: false}}
+                    ]
+                };
+            }
+
             query = {
                 $and: [
                     {'participants.username': currentUser},
-                    {'participants.1': {$exists: false}}
+                    {'participants.username': this.params.username}
                 ]
             };
+
+            var currentConversation = Conversations.findOne(query, {sort: {date_updated: -1}});
+
+            var data = {
+                messages: !!currentConversation && currentConversation.messages,
+                conversations: Conversations.find({'participants.username': !!Meteor.user() && Meteor.user().username}, {sort: {date_updated: -1}}),
+                participants: !!currentConversation && currentConversation.participants
+            };
+
+            return data;
         }
-
-        query = {
-            $and: [
-                {'participants.username': currentUser},
-                {'participants.username': this.params.username}
-            ]
-        };
-
-        var currentConversation = Conversations.findOne(query, {sort: {date_updated: -1}});
-
-        var data = {
-            messages: !!currentConversation && currentConversation.messages,
-            conversations: Conversations.find({'participants.username': !!Meteor.user() && Meteor.user().username}, {sort: {date_updated: -1}}),
-            participants: !!currentConversation && currentConversation.participants
-        };
-
-        return data;
     },
     onBeforeAction: function () {
         this.next();
@@ -144,14 +150,16 @@ Router.route('/inbox', {
         return [Meteor.subscribe('conversationsForUser', !!Meteor.user() && Meteor.user().username), Meteor.subscribe('directory')];
     },
     data: function () {
-        var conversations = Conversations.find({'participants.username': !!Meteor.user() && Meteor.user().username}, {sort: {date_updated: -1}}).fetch();
+        if (this.ready()) {
+            var conversations = Conversations.find({'participants.username': !!Meteor.user() && Meteor.user().username}, {sort: {date_updated: -1}}).fetch();
 
-        var data = {
-            messages: !!conversations[0] && conversations[0].messages,
-            conversations: conversations
-        };
+            var data = {
+                messages: !!conversations[0] && conversations[0].messages,
+                conversations: conversations
+            };
 
-        return data;
+            return data;
+        }
     },
     onBeforeAction: function () {
         var conversations = Conversations.find({'participants.username': !!Meteor.user() && Meteor.user().username}, {sort: {date_updated: -1}}).fetch();
