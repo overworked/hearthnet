@@ -120,13 +120,13 @@ Router.route('/inbox/:username', {
 
         var data = {
             messages: !!currentConversation && currentConversation.messages,
-            conversations: Conversations.find({'participants.username': !!Meteor.user() && Meteor.user().username}, {sort: {date_updated: -1}})
+            conversations: Conversations.find({'participants.username': !!Meteor.user() && Meteor.user().username}, {sort: {date_updated: -1}}),
+            participants: !!currentConversation && currentConversation.participants
         };
 
         return data;
     },
     onBeforeAction: function () {
-        Session.set('messageReceiverId', this.params.username);
         this.next();
     },
     action: function () {

@@ -17,27 +17,31 @@ Meteor.methods({
             console.log(error, affected); //TODO: handle this error properly
         });
     },
-    sendMessage: function (message) {
+    sendMessage: function (message, participants) {
         message['date'] = message['date'] || Date.now();
+
+        //TODO: verify identity of logged in user
 
         var query = {
             $and: [
-                {participants: message['receiverName']},
-                {participants: message['senderName']}
+                {'participants.username': participants[0].username},
+                {'participants.username': participants[1].username}
             ]
         };
 
         if (Conversations.findOne(query)) {
+            console.log('found'); console.log(message);
             Conversations.update(query, {$push: {messages: message}});
         } else {
-            Conversations.insert({messages: [message], participants: [message['receiverName'], message['senderName']]});
+            console.log('not found'); console.log(message);
+            Conversations.insert({messages: [message], participants: participants });
         }
     },
     maybeCreateConversation: function (receiverUsername) {
         var query = {
             $and: [
-                {participants: receiverUsername},
-                {participants: Meteor.user().username}
+                {'participants.username': receiverUsername},
+                {'participants.username': Meteor.user().username}
             ]
         };
         var conversation = Conversations.findOne(query);
@@ -55,7 +59,7 @@ Meteor.methods({
                     return;
                 }
 
-                console.log(result);
+                console.log('Created conversation.');
             });
         }
     }
