@@ -12,9 +12,10 @@ Template.conversationView.events({
         var message = templateInstance.find('#inboxNewMessage').value;
         var messageFields = {
             message: message,
+            author: Meteor.user().username,
             senderName: Meteor.user().username,
             receiverName: Session.get('messageReceiverId')
-        }
+        };
 
         Meteor.call('sendMessage', messageFields, function (err) {
             if (err) {
