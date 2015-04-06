@@ -1,22 +1,22 @@
 Template.search.events({
-	'input #searchBox input': function(e, templateInstance) {
-		e.preventDefault();
+    'input #searchBox input': function (e, templateInstance) {
+        e.preventDefault();
 
-		var obj = {$and: []};
-		$('#searchBox input').each(function(index, element) { 
+        var obj = {$and: []};
+        $('#searchBox input').each(function (index, element) {
 
-			// why you ask? I don't know, it just works.
-			// if (index < $('#searchBox input').length / 2) return;
+            // why you ask? I don't know, it just works.
+            // if (index < $('#searchBox input').length / 2) return;
 
-			var x = {}; 
-			x[$(element).data('filter-id')] = new RegExp("^" + element.value + '.*$', 'i'); 
+            var x = {};
+            x[$(element).data('filter-id')] = new RegExp("^" + element.value + '.*$', 'i');
 
-			obj.$and.push(x);
-		});
+            obj.$and.push(x);
+        });
 
-		console.log(obj)
+        console.log(obj)
 
-		Session.set('searchResults', Meteor.users.find(obj).fetch());
-		
-	}
+        Session.set('searchResults', Meteor.users.find(obj).fetch());
+
+    }
 })

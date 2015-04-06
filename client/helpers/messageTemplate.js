@@ -1,5 +1,5 @@
 Template.messageTemplate.helpers({
-	formattedDate: function(){
-		
-	}
+    formattedDate: function () {
+
+    }
 });

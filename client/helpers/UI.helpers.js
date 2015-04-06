@@ -1,4 +1,4 @@
-UI.registerHelper('isNotEmpty', function(array, options) {
+UI.registerHelper('isNotEmpty', function (array, options) {
     if (array) {
         if (array.count) {
             return array.count();
@@ -10,6 +10,6 @@ UI.registerHelper('isNotEmpty', function(array, options) {
     return false;
 });
 
-UI.registerHelper('exists', function(object, options) {
+UI.registerHelper('exists', function (object, options) {
     return !!object;
 });

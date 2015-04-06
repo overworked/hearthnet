@@ -1,5 +1,5 @@
 Template.inbox.helpers({
-	getOtherParticipantName: function(participants) {
-		return getOtherParticipantName(participants);
-	}
+    getOtherParticipantName: function (participants) {
+        return getOtherParticipantName(participants);
+    }
 });

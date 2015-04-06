@@ -1,5 +1,5 @@
 Template.register.events({
-    'submit #register-form' : function(e, templateInstance){
+    'submit #register-form': function (e, templateInstance) {
         e.preventDefault();
         var username = templateInstance.find('#account-username').value;
         var password = templateInstance.find('#account-password').value;
@@ -7,8 +7,8 @@ Template.register.events({
         console.log('Got inside the event handler');
 
         Accounts.createUser({
-            username: username, 
-            password : password,
+            username: username,
+            password: password,
             profile: {
                 wins: [],
                 losses: [],
@@ -16,12 +16,12 @@ Template.register.events({
                 preferredDecksToFace: [],
                 dislikedDecksToFace: []
             }
-        }, function(err){
+        }, function (err) {
             if (err) {
                 console.log(err);
             } else {
                 console.log('user has been registered and logged in'); //debug
-                Session.set('new_user','true');
+                Session.set('new_user', 'true');
 
                 Router.go('/edit-profile');
             }
