@@ -1,1 +1,1 @@
-//Meteor.users.attachSchema(UserSchema);
+Meteor.users.attachSchema(UserSchema);
