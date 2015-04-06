@@ -3,7 +3,9 @@
         <ul class="conversationsList">
             {{#each conversations}}
                 <li class="conversationSelector">
-                    {{getOtherParticipantName participants}}
+                    {{#each getOtherParticipants participants}}
+                        {{username}}
+                    {{/each}}
                 </li>
             {{/each}}
         </ul>

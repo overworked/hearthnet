@@ -157,7 +157,7 @@ Router.route('/inbox', {
         var conversations = Conversations.find({'participants.username': !!Meteor.user() && Meteor.user().username}, {sort: {date_updated: -1}}).fetch();
 
         if (conversations && conversations.length) {
-            var mostRecentConversationSlug = getOtherParticipantName(conversations[0].participants);
+            var mostRecentConversationSlug = getOtherParticipants(conversations[0].participants)[0].username;
 
             this.redirect('/inbox/' + mostRecentConversationSlug);
         } else {

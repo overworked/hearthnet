@@ -1,6 +1,6 @@
 Template.inbox.events({
     'click .conversationSelector': function (e, templateInstance) {
-        var inboxTargetSlug = getOtherParticipantName(this.participants);
+        var inboxTargetSlug = getOtherParticipants(this.participants)[0].username;
         Router.go('/inbox/' + inboxTargetSlug);
     }
 });
