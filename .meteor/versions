@@ -19,6 +19,7 @@ fastclick@1.0.2
 follower-livedata@1.0.3
 foundation@0.0.0
 geojson-utils@1.0.2
+grigio:babel@0.1.1
 html-tools@1.0.3
 htmljs@1.0.3
 http@1.0.10
