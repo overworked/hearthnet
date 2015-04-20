@@ -190,10 +190,3 @@ Router.route('/', function () {
     }
 });
 
-Router.onAfterAction(function () {
-    if (Meteor.isClient) {
-        Deps.afterFlush(function () {
-            Foundation.libs.offcanvas.events()
-        });
-    }
-}, {where: 'client'});
