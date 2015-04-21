@@ -1,48 +1,18 @@
-<template name='applicationLayout'>
-	<div id="nav-bar" class="columns large-2 medium-2 show-for-medium-up navigation">
-		<ul class="side-nav">
-			<li class="nav-item"><a href="/home">Dashboard</a></li>
-			<li class="nav-item"><a href="/inbox">Inbox</a></li>
-			<li class="nav-item"><a href="/search">Search</a></li>
-			<li class="nav-item"><a href="/browse">Browse</a></li>
-			<li class="nav-item"><a href="/edit-profile">Edit Profile</a></li>
-			<li class="nav-item"><button id="logoutButton" class="button small" href="#">Logout</button></li>
-		</ul>
-	</div>
-
-	<div class="off-canvas-wrap show-for-small-only" data-offcanvas>
-		<div class="inner-wrap">
-			<nav class="tab-bar">
-				<section class="left-small">
-					<a class="left-off-canvas-toggle menu-icon"><span></span></a>
-				</section>
-
-				<section class="middle tab-bar-section">
-					<h1 class="title">{{pageTitle}}</h1>
-				</section>
-			</nav>
-
-			<aside class="left-off-canvas-menu">
-				<ul class="off-canvas-list">
-					<li><label>Yolo</label></li>
-					<li class="nav-item"><a class="nav-link" href="/home">Dashboard</a></li>
-					<li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-					<li class="nav-item"><a class="nav-link" href="/browse">Browse</a></li>
-					<li class="nav-item"><a class="nav-link" href="/profile/{{currentUser._id}}">My Profile</a></li>
-				</ul>
-			</aside>
-
-			<section class="main-section">
-				{{>yield "content"}}
-			</section>
-
-			<a class="exit-off-canvas"></a>
-		</div>
-	</div>
-
-	<div id="content" class="columns large-10 medium-10 show-for-medium-up end">
-		<!-- <h1 class="text-center">{{pageTitle}}</h1> -->
-		{{>yield "content"}}
-	</div>
-
+<template name='landingLayout'>
+    <div class="landing-page-wrapper">
+        <div class="landing-page" ></div>
+    </div>
+    <div class="row" style="padding-top:3em">
+        <div class="panel text-center user-panel columns large-6 medium-8 small-12 large-centered medium-centered">
+            <ul class="tabs row" style="padding-bottom:1em;text-align:center">
+                <li class="tab-title active columns large-6 medium-6 small-6" style="padding-right:0"><a>Sign up</a></li>
+                <li class="tab-title columns large-6 medium-6 small-6" style="padding-left:0"><a>Log in</a></li>
+            </ul>
+			{{#if isLogin}}
+				{{> yield "login"}}
+			{{else}}
+				{{> yield "registration"}}
+			{{/if}}
+        </div>
+    </div>
 </template>
