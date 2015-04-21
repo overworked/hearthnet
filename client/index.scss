@@ -1,1 +1,6 @@
 @import "message/message";
+
+@import "./../.meteor/local/bower/bourbon/app/assets/stylesheets/bourbon";
+@import "./stylesheets/base/grid-settings";
+@import "./../.meteor/local/bower/neat/app/assets/stylesheets/neat";
+@import "./stylesheets/base/base";

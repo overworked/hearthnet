@@ -1,0 +1,18 @@
+{
+  "name": "hearthnet",
+  "version": "0.0.0",
+  "homepage": "https://github.com/overworked/hearthnet",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    ".meteor/local/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bourbon": "~4.2.2",
+    "neat": "~1.7.2",
+    "normalize.css": "~3.0.3"
+  }
+}

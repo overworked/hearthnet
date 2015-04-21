@@ -1,4 +1,8 @@
 {
   "useIndex" : true,
-  "indexFilePath" : "client/index.scss"
+  "indexFilePath" : "client/index.scss",
+  "includePaths": [
+    ".meteor/local/bower/",
+    "client/"
+  ]
 }
