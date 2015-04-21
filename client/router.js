@@ -3,7 +3,27 @@ Router.configure({
     loadingTemplate: 'loading'
 });
 
+var onBeforeHooks = {
+    ensureLoggedIn: function() {
+        if (!(Meteor.loggingIn() || Meteor.user())) {
+            Router.go('/');
+        } else {
+            this.next();
+        }
+    }
+};
+
+Router.onBeforeAction(onBeforeHooks.ensureLoggedIn, {only: [
+    'home',
+    'browse',
+    'profile',
+    'edit-profile',
+    'inbox-username',
+    'inbox'
+]});
+
 Router.route('/home', {
+    name: 'home',
     yieldRegions: {
         'dashboard': {to: 'content'}
     },
@@ -35,6 +55,7 @@ Router.route('/search', function () {
 });
 
 Router.route('/browse', {
+    name: 'browse',
     yieldRegions: {
         'list': {to: 'content'}
     },
@@ -58,6 +79,7 @@ Router.route('/browse', {
 });
 
 Router.route('/profiles/:username', {
+    name: 'profile',
     layoutTemplate: 'applicationLayout',
     waitOn: function () {
         return Meteor.subscribe('user', this.params.username);
@@ -75,6 +97,7 @@ Router.route('/profiles/:username', {
 });
 
 Router.route('/edit-profile', {
+    name: 'edit-profile',
     yieldRegions: {
         'editAccount': {to: 'content'}
     },
@@ -92,6 +115,7 @@ Router.route('/edit-profile', {
 });
 
 Router.route('/inbox/:username', {
+    name: 'inbox-username',
     yieldRegions: {
         'inbox': {to: 'content'}
     },
@@ -143,6 +167,7 @@ Router.route('/inbox/:username', {
 });
 
 Router.route('/inbox', {
+    name: 'inbox',
     yieldRegions: {
         'inbox': {to: 'content'}
     },
@@ -186,7 +211,7 @@ Router.route('/', function () {
         this.render('login', {to: 'login'});
     } else if (Meteor.userId() && !Session.get('new_user')) { //when user is logged in and not a new user
         Session.set('new_user', false);
-        this.redirect('/home');
+        Router.go('home');
     }
 });
 
