@@ -204,6 +204,20 @@ Router.route('/inbox', {
     }
 });
 
+Router.route('/logout', {
+    name: 'logout',
+    action: function() {
+        Meteor.logout(function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('logged out successfully');
+                Router.go('/');
+            }
+        });
+    }
+})
+
 Router.route('/', function () {
     if (!Meteor.userId()) {
         this.layout('landingLayout');
@@ -214,4 +228,3 @@ Router.route('/', function () {
         Router.go('home');
     }
 });
-

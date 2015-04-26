@@ -19,16 +19,6 @@ Template.applicationLayout.events({
     'click .nav-item': function(e) {
         Session.set('pageTitle', e.target.innerText);
     },
-    'click #logoutButton': function(e) {
-        Meteor.logout(function(err) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('logged out successfully');
-                Router.go('/');
-            }
-        });
-    },
     'click .sliding-panel-button, click .sliding-panel-fade-screen, click .sliding-panel-close': function(e, templateInstance) {
         if (!Session.get('isNavigationVisible')) {
             Session.set('isNavigationVisible', true);
