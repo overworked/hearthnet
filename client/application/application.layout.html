@@ -1,14 +1,22 @@
 <template name='applicationLayout'>
-    <div id="nav-bar" class="columns large-2 medium-2 show-for-medium-up navigation">
-        <ul class="side-nav">
-            <li class="nav-item"><a href="/home">Dashboard</a></li>
-            <li class="nav-item"><a href="/inbox">Inbox</a></li>
-            <li class="nav-item"><a href="/search">Search</a></li>
-            <li class="nav-item"><a href="/browse">Browse</a></li>
-            <li class="nav-item"><a href="/edit-profile">Edit Profile</a></li>
-            <li class="nav-item"><button id="logoutButton" class="button small" href="#">Logout</button></li>
-        </ul>
-    </div>
+
+
+    <button type="button" class="js-menu-trigger sliding-panel-button">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu-white.png" alt="Menu Icon">
+    </button>
+
+    <nav class="js-menu sliding-panel-content {{isVisible}}">
+      <ul>
+        <li><a href="/home">Dashboard</a></li>
+        <li><a href="/inbox">Inbox</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/browse">Browse</a></li>
+        <li><a href="/edit-profile">Edit Profile</a></li>
+        <li><button href="#">Logout</button></li>
+      </ul>
+    </nav>
+
+    <div class="js-menu-screen sliding-panel-fade-screen {{isVisible}}"></div>
 
     <div class="off-canvas-wrap show-for-small-only" data-offcanvas>
         <div class="inner-wrap">
@@ -21,16 +29,6 @@
                     <h1 class="title">{{pageTitle}}</h1>
                 </section>
             </nav>
-
-            <aside class="left-off-canvas-menu">
-                <ul class="off-canvas-list">
-                    <li><label>Yolo</label></li>
-                    <li class="nav-item"><a class="nav-link" href="/home">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/browse">Browse</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/profile/{{currentUser._id}}">My Profile</a></li>
-                </ul>
-            </aside>
 
             <section class="main-section">
 				{{>yield "content"}}
