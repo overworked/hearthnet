@@ -17,29 +17,9 @@
 
     <div class="js-menu-screen sliding-panel-fade-screen {{isVisible}}"></div>
 
-    <div class="off-canvas-wrap show-for-small-only" data-offcanvas>
-        <div class="inner-wrap">
-            <nav class="tab-bar">
-                <section class="left-small">
-                    <a class="left-off-canvas-toggle menu-icon"><span></span></a>
-                </section>
-
-                <section class="middle tab-bar-section">
-                    <h1 class="title">{{pageTitle}}</h1>
-                </section>
-            </nav>
-
-            <section class="main-section">
-				{{>yield "content"}}
-            </section>
-
-            <a class="exit-off-canvas"></a>
-        </div>
-    </div>
-
-    <div id="content" class="columns large-10 medium-10 show-for-medium-up end">
-        <!-- <h1 class="text-center">{{pageTitle}}</h1> -->
+    <section id="content">
+        <h1 class="text-center">{{pageTitle}}</h1>
 		{{>yield "content"}}
-    </div>
+    </section>
 
 </template>
