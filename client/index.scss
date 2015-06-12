@@ -72,16 +72,12 @@
 }
 
 .sliding-panel-button {
-  @include button(flat, #477DCA);
-  padding: 10px 16px;
+  @include button(flat, #FFFFFF);
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 100%;
   display: inline-block;
   cursor: pointer;
   position: relative;
   outline: none;
-
-  img {
-    height: 1.3em;
-  }
 }
-
-// Based on code by Diego Eis
