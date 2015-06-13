@@ -1,9 +1,13 @@
 <template name="userDashboardCard">
-	<div class="user-dashboard-card">
-		<a class="th" href="/profiles/{{username}}">
-		  	<img src="http://lorempixel.com/300/400/cats/"/>
-		</a>
-		<a href="/profiles/{{username}}" class="dashboard-card-overlay th"></a>
-		<a href="#" class="button tiny expand radius info user-dashboard-card-button">{{username}}</a>
-	</div>
+	<article class="user-dashboard-card">
+		<!-- <a href="/profiles/{{username}}" class=""></a> -->
+		<!-- <a href="#" class="">{{username}}</a> -->
+
+		<img class="avatar" src="http://lorempixel.com/140/140/cats/"/>
+
+		<span class="username">{{username}}</span>
+		<article>
+			{{profile.description}}
+		</article>
+	</article>
 </template>
