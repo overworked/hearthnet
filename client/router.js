@@ -34,10 +34,10 @@ Router.route('/home', {
         if (this.ready()) {
             var data = {
                 featuredUsers: function () {
-                    return Meteor.users.find({username: {$not: Meteor.user().username}}, {limit: 3}); //TODO: implement better logic to find featured users & restrict count
+                    return Meteor.users.find({username: {$not: Meteor.user().username}}, {limit: 8}); //TODO: implement better logic to find featured users & restrict count
                 },
                 normalUsers: function () {
-                    return Meteor.users.find({username: {$not: Meteor.user().username}}, {limit: 8});
+                    return Meteor.users.find({username: {$not: Meteor.user().username}});
                 }
             };
             return data;
