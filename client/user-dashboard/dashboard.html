@@ -1,29 +1,15 @@
 <template name="dashboard">
-	<div class="row">
-		<div class="column small-12">
-			<h1 class="header">top suggestions: </h1>
-		</div>
-	</div>
-
-    <div class="row">
-    	{{#each featuredUsers}}
-    	<div class="columns small-4">
-	    	{{> userDashboardCard}}
-	    </div>
-	    {{/each}}
-    </div>
-
-    <div class="row">
-    	<div class="column small-12">
-    		<h1 class="header">other kittens:</h1>
-    	</div>
-    </div>
-
-    <div class="row">
-		{{#each normalUsers}}
-		<div class="columns small-3">
-			{{> userSearchCard}}
-		</div>
+	<h1 class="header">top suggestions: </h1>
+	<section class="dashboard-container">
+		{{#each featuredUsers}}
+			{{> userDashboardCard}}
 		{{/each}}
-    </div>
+	</section>
+
+	<h1 class="header">other kittens:</h1>
+	<section class="dashboard-container">
+		{{#each normalUsers}}
+			{{> userDashboardCard}}
+		{{/each}}
+	</section>
 </template>

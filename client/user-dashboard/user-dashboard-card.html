@@ -1,13 +1,12 @@
 <template name="userDashboardCard">
-	<article class="user-dashboard-card">
-		<!-- <a href="/profiles/{{username}}" class=""></a> -->
-		<!-- <a href="#" class="">{{username}}</a> -->
-
-		<img class="avatar" src="http://lorempixel.com/140/140/cats/"/>
-
-		<span class="username">{{username}}</span>
+	<a href="/profiles/{{username}}" class="user-dashboard-card">
 		<article>
-			{{profile.description}}
+			<img class="avatar" src="http://lorempixel.com/140/140/cats/"/>
+			<span class="username">{{username}}</span>
+			<hr class="divider">
+			<article>
+				{{profile.description}}
+			</article>
 		</article>
-	</article>
+	</a>
 </template>
